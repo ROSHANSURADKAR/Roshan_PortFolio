@@ -190,3 +190,34 @@ themeButton.addEventListener("click", () => {
     localStorage.setItem("selected-theme", getCurrentTheme());
     localStorage.setItem("selected-icon", getCurrentIcon());
 });
+
+// Qualification Tabs Logic
+document.addEventListener('DOMContentLoaded', () => {
+  const tabs = document.querySelectorAll('.qualification_button');
+  const contents = document.querySelectorAll('.qualification_content');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const targetId = tab.id.replace('header', '');
+      const target = document.getElementById(targetId);
+
+      // Remove active class from all tabs
+      tabs.forEach(t => t.classList.remove('qualification_active'));
+
+      // Add active class to clicked tab
+      tab.classList.add('qualification_active');
+
+      // Hide all content
+      contents.forEach(content => {
+        content.classList.remove('qualification_active');
+        content.classList.add('qualification-inactive');
+      });
+
+      // Show the selected content
+      if (target) {
+        target.classList.remove('qualification-inactive');
+        target.classList.add('qualification_active');
+      }
+    });
+  });
+});
